@@ -1,27 +1,23 @@
 var TREE = {};
+
 TREE.setup = function() {
-	TREE.canvas = document.getElementById("canvas");
-	TREE.ctx = canvas.getContext("2d");
 	var height = canvas.height,
 		width = canvas.width;
-
-	TREE.rootNode = TREE.Node.newNode(width/2, height/2, 20);
-	TREE.rootNode.children.push(TREE.Node.newNode(width/2 + 40, height/2 + 40, 10));
-	TREE.rootNode.children.push(TREE.Node.newNode(width/2 - 40, height/2 + 40, 10));
-	TREE.rootNode.children.push(TREE.Node.newNode(width/2 + 40, height/2 - 40, 10));
-	TREE.rootNode.children.push(TREE.Node.newNode(width/2 - 40, height/2 - 40, 10));
-	for (var i = 0; i < TREE.rootNode.children.length; i++) {
-		var child = TREE.rootNode.children[i];
-		var x = (child.x - width/2) * 1.5 + width/2;
-		var y = (child.y - height/2) * 1.5 + height/2;
-		var r = child.radius / 2;
-		child.children.push(TREE.Node.newNode(x, y, r));
-	}
+	TREE.rootNode = TREE.Node.newNode(0, 0, 40);
 }
 
 TREE.run = function() {
-	TREE.Renderer.render();
+	TREE.setConsts({
+		canvas : document.getElementById("canvas"),
+	});
+	TREE.setConsts({
+		ctx : TREE.canvas.getContext("2d"),
+		windowX : -TREE.canvas.width / 2,
+		windowY : -TREE.canvas.height / 2,
+	});
 
+	TREE.Render.render();
+	setTimeout(30, TREE.run);
 }
 
 // With thanks to Wolfenstein3D-browser
