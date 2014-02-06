@@ -19,11 +19,18 @@ TREE.Node = (function() {
 	var rmvNode = function(node) {
 		var kids = node.parentNode.children;
 		kids.splice(kids.indexOf(node), 1);
-	}
+	};
+
+	var nodeDist = function(node, x, y) {
+		var dx = node.x - x,
+			dy = node.y - y;
+		return Math.sqrt(dx * dx + dy * dy);
+	};
 
 	return {
 		newNode : newNode,
 		addNode : addNode,
 		rmvNode : rmvNode,
+		nodeDist : nodeDist,
 	};
 })();

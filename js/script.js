@@ -1,12 +1,6 @@
 var TREE = {};
 
 TREE.setup = function() {
-	var height = canvas.height,
-		width = canvas.width;
-	TREE.rootNode = TREE.Node.newNode(0, 0, 40);
-}
-
-TREE.run = function() {
 	TREE.setConsts({
 		canvas : document.getElementById("canvas"),
 	});
@@ -16,8 +10,17 @@ TREE.run = function() {
 		windowY : -TREE.canvas.height / 2,
 	});
 
+	var canvas = TREE.canvas,
+		height = canvas.height,
+		width = canvas.width;
+	TREE.rootNode = TREE.Node.newNode(0, 0, 40);
+
+	canvas.onclick = TREE.Input.onClick;
+}
+
+TREE.run = function() {
 	TREE.Render.render();
-	setTimeout(30, TREE.run);
+	setTimeout(TREE.run, 30);
 }
 
 // With thanks to Wolfenstein3D-browser

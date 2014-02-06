@@ -9,6 +9,10 @@ TREE.Render = (function() {
 		ctx.clearRect(1,1, canvas.width-2, canvas.height-2);
 
 		drawTreeNode(TREE.rootNode);
+
+		if (TREE.clickedNode) {
+			drawActiveNode(TREE.clickedNode);
+		}
 	};
 
 	var drawTreeNode = function(node) {
@@ -16,6 +20,7 @@ TREE.Render = (function() {
 			windowX = TREE.windowX,
 			windowY = TREE.windowY;
 
+		ctx.fillStyle = "rgb(0,0,0)";
 		ctx.arc(node.x - windowX, node.y - windowY, node.radius, 0, 2*Math.PI);
 		ctx.fill();
 		for (var i = 0; i < node.children.length; i++) {
@@ -26,7 +31,17 @@ TREE.Render = (function() {
 			ctx.closePath();
 			drawNode(node.children[i]);
 		}
-	}
+	};
+
+	var drawActiveNode = function(node) {
+		var ctx = TREE.ctx,
+			windowX = TREE.windowX,
+			windowY = TREE.windowY;
+
+		ctx.fillStyle = "rgb(0,0,255)";
+		ctx.arc(node.x - windowX, node.y - windowY, node.radius, 0, 2*Math.PI);
+		ctx.fill();
+	};
 
 	var drawMenu = function(menu, mother) {
 		var ctx = TREE.ctx,
@@ -36,7 +51,7 @@ TREE.Render = (function() {
 		for (var i = 0; i < menu.length; i++) {
 			
 		}
-	}
+	};
 
 	return {
 		render : render,
