@@ -1,4 +1,6 @@
 TREE.Menu = (function() {
+	var radius = 10;
+
 	// menu options
 	var makeNode = {
 		action : function(menu, node) {
@@ -21,6 +23,13 @@ TREE.Menu = (function() {
 		if (node !== rootNode) {
 			menu.push(rmvNode);
 		}
-		return node;
+		return menu;
 	}
+
+	 return {
+		makeNode : makeNode,
+		removeNode : removeNode,
+		getMenu : getMenu,
+		radius : radius,
+	 };
 })();

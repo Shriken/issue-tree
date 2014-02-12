@@ -7,7 +7,6 @@ TREE.Input = (function() {
 		var x = event.offsetX + TREE.windowX,
 			y = event.offsetY + TREE.windowY,
 			clickedNode = checkNode(TREE.rootNode, x, y);
-		console.log(x, y);
 
 		if (clickedNode) {
 			TREE.clickedNode = clickedNode;
